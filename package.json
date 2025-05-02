@@ -1,0 +1,26 @@
+{
+  "name": "test262.fyi",
+  "module": "index.ts",
+  "type": "module",
+  "dependencies": {
+    "@ncpa0cpl/vanilla-jsx": "^0.0.1-alpha.37",
+    "@ncpa0cpl/vrouter": "^0.0.10"
+  },
+  "devDependencies": {
+    "@ncpa0cpl/nodepack": "^2.3.3",
+    "@types/bun": "latest",
+    "dprint": "^0.49.1",
+    "esbuild": "^0.25.3",
+    "typescript": "^5.8.3"
+  },
+  "resolutions": {
+    "@ncpa0cpl/vanilla-jsx": "^0.0.1-alpha.37"
+  },
+  "scripts": {
+    "build": "bun ./scripts/build.mjs",
+    "build:dev": "bun ./scripts/build.mjs --dev",
+    "watch": "bun ./scripts/build.mjs --dev --watch",
+    "fmt": "dprint fmt"
+  },
+  "packageManager": "yarn@1.22.22+sha1.ac34549e6aa8e7ead463a7407e1c7390f61a6610"
+}

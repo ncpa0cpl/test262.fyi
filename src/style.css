@@ -15,7 +15,7 @@ body {
   color-scheme: dark;
 }
 
-body {
+.page-root {
   display: grid;
   grid-template-columns: [sidebar] 320px [content] 1fr;
 }
@@ -112,18 +112,20 @@ th.sub {
 
 table .stats {
   width: calc((100vw - 320px - 4vw) * 0.75 - 12px - 2px);
-  margin: 6px;
+  margin: 0.8em;
 }
 
 thead .stats {
   margin: 0;
-  width: calc(100vw - 320px - 4vw - 19px);
+  width: 100%;
 }
 
 .stats > div {
   height: 100%;
   font-size: 14px;
   line-height: 22px;
+  padding-inline: 0.3em;
+  overflow: hidden;
 
   overflow: hidden;
   white-space: nowrap;
@@ -146,7 +148,11 @@ thead .stats {
 }
 
 .stat-jsc {
-  background: #003550;
+  background: #d903df;
+}
+
+.stat-jsc_exp {
+  background: #8a008e;
 }
 
 .stat-hermes {
@@ -227,16 +233,12 @@ thead .stats {
   color: #000408;
 }
 
-.stat-jsc_exp {
-  background: #002540;
-}
-
 .stat-porffor {
   background: #9c60e0;
 }
 
 .stat-nova {
-  background: #FF810A;
+  background: #ff810a;
   color: #000408;
 }
 
@@ -432,9 +434,7 @@ a {
   width: calc((100vw - 320px - 4vw) / 2 - 24px);
 }
 
-#proposals > div > :first-child {
-
-}
+#proposals > div > :first-child {}
 
 #proposals > div > :first-child > a, #editions > div > :first-child > span {
   color: #f0f4f8;
@@ -450,7 +450,8 @@ a {
   margin-bottom: 4px;
 }
 
-#proposals > div > :first-child > a > span, #editions > div > :first-child > span > span {
+#proposals > div > :first-child > a > span,
+#editions > div > :first-child > span > span {
   font-size: 0.7em;
   font-weight: 500;
   margin-left: 6px;
@@ -543,10 +544,54 @@ summary input {
 }
 
 #sidebar summary::after {
-  content: '◄';
+  content: "◄";
   float: right;
 }
 
 #sidebar details[open] summary:after {
   content: " ▼";
+}
+
+.graph-value {
+  margin-left: 0.4em;
+}
+
+.table-option-checkbox {
+  margin-right: 0.3em;
+}
+
+#error-page {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: calc(100vh - 3em);
+}
+
+#navbar {
+  height: 3em;
+  display: flex;
+  position: sticky;
+  top: 0;
+  background-color: #202428;
+  z-index: 4;
+}
+
+.navbar-link {
+  height: 100%;
+  padding-inline: 1em;
+  display: flex;
+  width: min-content;
+  justify-content: center;
+  align-items: center;
+
+  &:hover {
+    background-color: rgba(255, 255, 255, 0.1);
+  }
+}
+
+.interactive {
+  &:hover {
+    cursor: pointer;
+  }
 }
