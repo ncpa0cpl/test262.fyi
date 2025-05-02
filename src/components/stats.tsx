@@ -80,12 +80,8 @@ export function Stats(props: StatProps) {
           engineCalcs,
           (abs, { total, percent }) =>
             abs
-              ? (
-                `${percent}/${total}`
-              )
-              : (
-                `${percent.toFixed(0)}%`
-              ),
+              ? `${percent}/${total}`
+              : `${percent.toFixed(0)}%`,
         );
 
         return (

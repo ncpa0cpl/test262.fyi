@@ -110,7 +110,7 @@ export function Layout(props: { ctx: RouteComponentContext<"eng", false> }) {
                   <Details
                     open
                     persistenceID={`eng_cat_${groupName}`}
-                    animationDiration={200}
+                    animationDuration={200}
                     summary={
                       <>
                         <input

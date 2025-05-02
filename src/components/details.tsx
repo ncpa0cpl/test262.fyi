@@ -139,7 +139,7 @@ class DetailsAnimController {
 export function Details(
   props: {
     persistenceID?: string;
-    animationDiration?: number;
+    animationDuration?: number;
     open: boolean;
     summary: MaybeReadonlySignal<JSX.Element>;
     children: MaybeReadonlySignal<JSX.Element | JSX.Element[]>;
@@ -171,7 +171,7 @@ export function Details(
     </details>
   ) as HTMLDetailsElement;
 
-  new DetailsAnimController(elem, props.animationDiration);
+  new DetailsAnimController(elem, props.animationDuration);
 
   return elem;
 }
