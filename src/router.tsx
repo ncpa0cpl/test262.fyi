@@ -1,8 +1,9 @@
 import { router as vrouter } from "@ncpa0cpl/vrouter";
 import { DetailsPage } from "./pages/details/details";
 import { ErrorPage } from "./pages/error/error";
+import { FeaturesPage } from "./pages/features/features";
 import { Layout } from "./pages/layout";
-import { Summary } from "./pages/summary/summary";
+import { SummaryPage } from "./pages/summary/summary";
 
 export const router = vrouter({
   paramNames: ["eng"],
@@ -13,7 +14,7 @@ export const router = vrouter({
       default: true,
       memo: true,
       paramNames: [],
-      component: ctx => <Summary ctx={ctx} />,
+      component: ctx => <SummaryPage ctx={ctx} />,
     }),
     details: define({
       paramNames: ["file"],
@@ -21,6 +22,7 @@ export const router = vrouter({
     }),
     features: define({
       paramNames: [],
+      component: ctx => <FeaturesPage />,
     }),
     error: define({
       paramNames: [],

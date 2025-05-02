@@ -15,7 +15,9 @@ import { localStorageSig } from "../../utils/local-storage-signal";
 import { oget } from "../../utils/oget";
 import type { Unpartial } from "../../utils/ts.utils";
 
-export function Summary(props: { ctx: RouteComponentContext<"eng", false> }) {
+export function SummaryPage(
+  props: { ctx: RouteComponentContext<"eng", false> },
+) {
   const { ctx } = props;
 
   const {
