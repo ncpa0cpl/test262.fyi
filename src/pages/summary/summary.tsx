@@ -33,10 +33,12 @@ export function SummaryPage(
     return selected;
   });
 
-  const editionsSum = sig.derive(
-    selectedEngines,
-    editions,
-    (selectedEngines, editions) => {
+  const editionsSum = editions.derive(
+    (editions) => {
+      const editionsAcc: Record<
+        string,
+        { total: number; engines: Record<string, number> }
+      > = {};
       const acc = { total: 0, engines: {} as Record<string, number> };
       for (
         const [edition, { engines, total }] of Object
@@ -47,8 +49,12 @@ export function SummaryPage(
           acc.engines[engine] = (acc.engines[engine] ?? 0)
             + passes;
         }
+        editionsAcc[edition] = {
+          total: acc.total,
+          engines: { ...acc.engines },
+        };
       }
-      return acc;
+      return editionsAcc;
     },
   );
 
@@ -181,18 +187,16 @@ export function SummaryPage(
                         editionsSum,
                         (selected, additionsOnly, editionsSum) =>
                           additionsOnly
-                            ? editionEngines.filter(([eng]) =>
-                              selected.includes(eng)
-                            )
-                            : engSlice(editionsSum.engines).filter(([eng]) =>
-                              selected.includes(eng)
-                            ),
+                            ? editionEngines
+                              .filter(([eng]) => selected.includes(eng))
+                            : engSlice(editionsSum[edition]!.engines)
+                              .filter(([eng]) => selected.includes(eng)),
                       )}
                       total={sig.derive(
                         additionsOnly,
                         editionsSum,
                         (additionsOnly, editionsSum) =>
-                          additionsOnly ? total : editionsSum.total,
+                          additionsOnly ? total : editionsSum[edition]!.total,
                       )}
                     />
                   </div>
