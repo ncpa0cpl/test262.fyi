@@ -5,7 +5,9 @@ import { FeaturesPage } from "./pages/features/features";
 import { Layout } from "./pages/layout";
 import { SummaryPage } from "./pages/summary/summary";
 
-declare const BASEPATH: string | undefined;
+declare global {
+  const BASEPATH: string | undefined;
+}
 
 export const router = vrouter({
   basePath: BASEPATH,

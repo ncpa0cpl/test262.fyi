@@ -93,7 +93,7 @@ export function Layout(props: { ctx: RouteComponentContext<"eng", false> }) {
       <div id="sidebar">
         <div id="sidebar-contents">
           <h1>
-            <a href="/">test262.fyi</a>
+            <a href={BASEPATH ?? "/"}>test262.fyi</a>
           </h1>
           <h2>
             daily runner of{" "}
