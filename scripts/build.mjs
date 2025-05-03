@@ -4,9 +4,16 @@ import path from "path";
 
 const p = (...args) => path.resolve(import.meta.dirname, "..", ...args);
 
+async function copyFiles() {
+  await fs.cp(p("src/style.css"), p("dist/esm/style.css"));
+  await fs.cp(p("src/index.html"), p("dist/esm/index.html"));
+  await fs.cp(p("src/favicon-16x16.png"), p("dist/esm/favicon-16x16.png"));
+  await fs.cp(p("src/favicon-32x32.png"), p("dist/esm/favicon-32x32.png"));
+}
+
 async function main() {
   await fs.mkdir(p("dist/esm"), { recursive: true });
-  await fs.cp(p("src/style.css"), p("dist/esm/style.css"));
+  copyFiles();
   await build({
     srcDir: p("src"),
     outDir: p("dist"),
@@ -23,8 +30,7 @@ async function main() {
       sourcemap: process.argv.includes("--dev") ? "inline" : false,
     },
     watch: process.argv.includes("--watch"),
-    onBuildComplete: () =>
-      void fs.cp(p("src/style.css"), p("dist/esm/style.css")),
+    onBuildComplete: () => void copyFiles(),
   });
 }
 
