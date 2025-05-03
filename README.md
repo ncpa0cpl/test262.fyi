@@ -1,3 +1,14 @@
+# https://ncpa0cpl.github.io/test262.fyi/
+
+An alternative frontend for the test262.fyi
+
+## Improvements over test262.fyi
+
+- fixed routing issues
+- persistent settings
+- persistent accordions
+- animations and view transitions
+
 # test262.fyi
 
 Independent daily [test262](https://github.com/tc39/test262) (standard test suite) runner for _many_ JS engines (test262.report spiritual successor). WIP.
