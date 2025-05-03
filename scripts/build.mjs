@@ -4,11 +4,16 @@ import path from "path";
 
 const p = (...args) => path.resolve(import.meta.dirname, "..", ...args);
 
+const BASEPATH = process.env.BASEPATH ?? "";
+
 async function copyFiles() {
   await fs.cp(p("src/style.css"), p("dist/esm/style.css"));
-  await fs.cp(p("src/index.html"), p("dist/esm/index.html"));
   await fs.cp(p("src/favicon-16x16.png"), p("dist/esm/favicon-16x16.png"));
   await fs.cp(p("src/favicon-32x32.png"), p("dist/esm/favicon-32x32.png"));
+
+  let indexContents = await fs.readFile(p("src/index.html"), "utf8");
+  indexContents = indexContents.replaceAll("%BASEPATH%", BASEPATH);
+  await fs.writeFile(p("dist/esm/index.html"), indexContents);
 }
 
 async function main() {
@@ -28,6 +33,7 @@ async function main() {
       },
       minify: process.argv.includes("--dev") ? false : true,
       sourcemap: process.argv.includes("--dev") ? "inline" : false,
+      define: { BASEPATH: JSON.stringify(BASEPATH) },
     },
     watch: process.argv.includes("--watch"),
     onBuildComplete: () => void copyFiles(),
