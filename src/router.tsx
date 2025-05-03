@@ -1,4 +1,4 @@
-import { router as vrouter } from "@ncpa0cpl/vrouter";
+import { vrouter } from "@ncpa0cpl/vrouter";
 import { DetailsPage } from "./pages/details/details";
 import { ErrorPage } from "./pages/error/error";
 import { FeaturesPage } from "./pages/features/features";
@@ -6,6 +6,7 @@ import { Layout } from "./pages/layout";
 import { SummaryPage } from "./pages/summary/summary";
 
 export const router = vrouter({
+  basePath: "/test262.fyi",
   paramNames: ["eng"],
   title: "test262.fyi",
   component: (ctx) => <Layout ctx={ctx} />,

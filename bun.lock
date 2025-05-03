@@ -5,7 +5,7 @@
       "name": "test262.fyi",
       "dependencies": {
         "@ncpa0cpl/vanilla-jsx": "^0.0.1-alpha.37",
-        "@ncpa0cpl/vrouter": "^0.0.10",
+        "@ncpa0cpl/vrouter": "^0.0.11",
       },
       "devDependencies": {
         "@ncpa0cpl/nodepack": "^2.3.3",
@@ -94,7 +94,7 @@
 
     "@ncpa0cpl/vanilla-jsx": ["@ncpa0cpl/vanilla-jsx@0.0.1-alpha.37", "", { "dependencies": { "html-element-attributes": "^3.4.0" } }, "sha512-wE0Nzez3EjBNUq+RtFn0Va2WSeFwTRvLGJ6UskeXML8NBenTbX0TtZQJ3GIfd9HifdId4mCwEDTY21gkk7g3Lg=="],
 
-    "@ncpa0cpl/vrouter": ["@ncpa0cpl/vrouter@0.0.10", "", { "dependencies": { "@ncpa0cpl/vanilla-jsx": ">=0.0.1-alpha.33" } }, "sha512-vnQVbEUWO01FzlH/z1ooYJkL4wLIjCe8arCng1ttQlAxheTptPPMaXB4RkFgZv37LtjuJStFkKsiy2X6m6LSog=="],
+    "@ncpa0cpl/vrouter": ["@ncpa0cpl/vrouter@0.0.11", "", { "dependencies": { "@ncpa0cpl/vanilla-jsx": ">=0.0.1-alpha.33" } }, "sha512-KU0zhj0avdO9eFpRjmZFO1Jgl6XoF9UTUdjCGJ6h5AckTvzOFXv8QUBtcM1jcGpx4fYP/WoM0LjeZprUhW4vMg=="],
 
     "@nodelib/fs.scandir": ["@nodelib/fs.scandir@2.1.5", "", { "dependencies": { "@nodelib/fs.stat": "2.0.5", "run-parallel": "^1.1.9" } }, "sha512-vq24Bq3ym5HEQm2NKCr3yXDwjc7vTsEThRDnkp2DK9p1uqLR+DHurm/NOTo0KG7HYHU7eppKZj3MyqYuMBf62g=="],
 

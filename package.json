@@ -4,7 +4,7 @@
   "type": "module",
   "dependencies": {
     "@ncpa0cpl/vanilla-jsx": "^0.0.1-alpha.37",
-    "@ncpa0cpl/vrouter": "^0.0.10"
+    "@ncpa0cpl/vrouter": "^0.0.11"
   },
   "devDependencies": {
     "@ncpa0cpl/nodepack": "^2.3.3",
@@ -20,7 +20,8 @@
     "build": "bun ./scripts/build.mjs",
     "build:dev": "bun ./scripts/build.mjs --dev",
     "watch": "bun ./scripts/build.mjs --dev --watch",
-    "fmt": "dprint fmt"
+    "fmt": "dprint fmt",
+    "release": "git switch release && git rebase main && git push && git switch main"
   },
   "packageManager": "yarn@1.22.22+sha1.ac34549e6aa8e7ead463a7407e1c7390f61a6610"
 }
