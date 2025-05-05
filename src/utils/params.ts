@@ -6,14 +6,15 @@ const SEPARATOR = "|";
 export class Params {
   static getEngines(ctx: RouteComponentContext<"eng", false>) {
     return ctx.params.derive((p) => {
-      const selected = p.eng?.split(SEPARATOR) ?? DEFAULT_SELECTED_ENG;
+      const selected = p.eng?.split(SEPARATOR).filter(Boolean)
+        ?? DEFAULT_SELECTED_ENG;
       return selected;
     });
   }
 
   static getFeatures(ctx: RouteComponentContext<"feats", false>) {
     return ctx.params.derive((p) => {
-      const selected = p.feats?.split(SEPARATOR) ?? [];
+      const selected = p.feats?.split(SEPARATOR).filter(Boolean) ?? [];
       return selected;
     });
   }
