@@ -42,5 +42,6 @@ export const store = {
     relativeGraphs: localStorageSig("relativeGraphs", false),
     hideNegligible: localStorageSig("hideNegligibleResults", true),
     useAbs: localStorageSig("useAbsoluteNumbers", false),
+    orderByResult: localStorageSig("orderByResult", false),
   },
 };

@@ -27,6 +27,7 @@ export function Stats(props: StatProps) {
       verticalGraphs,
       hideNegligible,
       useAbs,
+      orderByResult,
     },
   } = store;
 
@@ -100,6 +101,11 @@ export function Stats(props: StatProps) {
                     : "block",
               ),
               width: engineCalcs.derive(graphBarWidth),
+              order: sig.when(
+                orderByResult,
+                engineCalcs.derive(d => String(d.total - d.passes)),
+                undefined,
+              ),
             }}
           >
             <b>{name}</b>

@@ -8,6 +8,7 @@ export function TableOptions() {
       verticalGraphs,
       hideNegligible,
       useAbs,
+      orderByResult,
     },
   } = store;
 
@@ -31,6 +32,11 @@ export function TableOptions() {
         option={useAbs}
         label="Use absolute numbers (X/Y)"
         description="eg 1/2 instead of 50%"
+      />
+      <TableOption
+        option={orderByResult}
+        label="Order by result"
+        description="Order engines in the graphs by the engine test score"
       />
     </div>
   );
