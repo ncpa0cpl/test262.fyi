@@ -1,8 +1,10 @@
 import type { NavigationOptions } from "@ncpa0cpl/vrouter";
+import type { Resolvable } from "../../../vrouter/dist/types/util/resolvable";
 import { router } from "../router";
+import { prefetch } from "../utils/get";
 
 type To<Params> = {
-  $open(params?: Params, opt?: NavigationOptions): any;
+  $open(params?: Params, opt?: NavigationOptions): Resolvable<any>;
   $url(params?: Params, opt?: NavigationOptions): string;
 };
 
@@ -11,10 +13,13 @@ type LinkProps<Params> = Omit<JSX.IntrinsicElements["a"], "href"> & {
   params?: Params;
   /** Keeps any already set search params when navigating */
   keepParams?: boolean;
+  prefetch?: string;
 };
 
 export function Link<Params>(
-  { to, params, keepParams = true, ...props }: LinkProps<Params>,
+  { to, params, keepParams = true, prefetch: prefetchUrl, ...props }: LinkProps<
+    Params
+  >,
 ) {
   return (
     <a
@@ -24,6 +29,11 @@ export function Link<Params>(
         e.preventDefault();
         to.$open(params, { keepParams });
       }}
+      onmouseover={prefetchUrl
+        ? (() => {
+          prefetch(prefetchUrl);
+        })
+        : undefined}
     />
   );
 }

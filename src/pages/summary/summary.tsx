@@ -13,6 +13,7 @@ import { prefetch } from "../../utils/get";
 import { graphBarWidth } from "../../utils/graph-bar-width";
 import { localStorageSig } from "../../utils/local-storage-signal";
 import { oget } from "../../utils/oget";
+import { Params } from "../../utils/params";
 import type { Unpartial } from "../../utils/ts.utils";
 
 export function SummaryPage(
@@ -28,10 +29,7 @@ export function SummaryPage(
 
   const additionsOnly = localStorageSig("esAdditionsOnly", true);
 
-  const selectedEngines = ctx.params.derive((p) => {
-    const selected = p.eng?.split("|") ?? DEFAULT_SELECTED_ENG;
-    return selected;
-  });
+  const selectedEngines = Params.getEngines(ctx);
 
   const editionsSum = editions.derive(
     (editions) => {
@@ -68,9 +66,8 @@ export function SummaryPage(
             if (!data) return <></>;
 
             return Object.entries(data.files).map(([file, fileData]) => {
-              const fileEngines = engSlice(fileData.engines);
               const applicableEngines = selectedEngines.derive(selected =>
-                fileEngines.filter(([eng]) => selected.includes(eng))
+                engSlice(fileData.engines, selected)
               );
 
               return (
@@ -115,9 +112,8 @@ export function SummaryPage(
             .filter((f): f is Unpartial<FeatureData> => f.proposal !== null)
             .sort((a, b) => b.proposal.stars - a.proposal.stars)
             .map((feat) => {
-              const featEngines = engSlice(feat.engines);
               const applicableEngines = selectedEngines.derive(selected =>
-                featEngines.filter(([eng]) => selected.includes(eng))
+                engSlice(feat.engines, selected)
               );
 
               return (
@@ -164,8 +160,6 @@ export function SummaryPage(
                 })
               )
               .map(([edition, { engines, total }]) => {
-                const editionEngines = engSlice(engines);
-
                 return (
                   <div>
                     <div>
@@ -187,10 +181,8 @@ export function SummaryPage(
                         editionsSum,
                         (selected, additionsOnly, editionsSum) =>
                           additionsOnly
-                            ? editionEngines
-                              .filter(([eng]) => selected.includes(eng))
-                            : engSlice(editionsSum[edition]!.engines)
-                              .filter(([eng]) => selected.includes(eng)),
+                            ? engSlice(engines, selected)
+                            : engSlice(editionsSum[edition]!.engines, selected),
                       )}
                       total={sig.derive(
                         additionsOnly,

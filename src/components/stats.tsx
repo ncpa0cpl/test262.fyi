@@ -66,7 +66,8 @@ export function Stats(props: StatProps) {
     >
       {(eng) => {
         const engineCalcs = sig.derive(baseCalcs, engines, (calcs, engines) => {
-          const passes = engines.find(([name]) => name === eng)![1];
+          const entry = engines.find(([name]) => name === eng);
+          const passes = entry?.[1] ?? 0;
           return ({
             ...calcs,
             passes,

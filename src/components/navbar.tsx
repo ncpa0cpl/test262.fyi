@@ -1,4 +1,5 @@
 import { router } from "../router";
+import { prefetch } from "../utils/get";
 import { Link } from "./link";
 
 export function Navbar() {

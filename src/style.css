@@ -595,3 +595,51 @@ summary input {
     cursor: pointer;
   }
 }
+
+#features-page {
+  padding: 2vh 2vw;
+
+  & .feature-filter {
+    & .feature-filter-input {
+      border-radius: 2px;
+      border-top-right-radius: 0px;
+      border-bottom-right-radius: 0px;
+      border-right: 0px;
+      outline: none;
+      margin-bottom: 0.5em;
+    }
+    & button.clear-query {
+      border-radius: 2px;
+      border-top-left-radius: 0px;
+      border-bottom-left-radius: 0px;
+      border-left: 0;
+      padding: 1px 0.2em;
+      border: 1px solid grey;
+    }
+    & button.reset {
+      margin-left: 1em;
+      border-radius: 2px;
+      padding: 1px 0.2em;
+      border: 1px solid grey;
+    }
+  }
+
+  & #feature-selector {
+    width: 100%;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+    margin-bottom: 1em;
+
+    & .feat {
+      display: none;
+
+      &.visible {
+        display: block;
+      }
+    }
+
+    & .feature-checkbox {
+      margin-right: 0.3em;
+    }
+  }
+}

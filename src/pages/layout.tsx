@@ -13,6 +13,7 @@ import { store } from "../stores";
 import { engSlice } from "../utils/eng-slice";
 import { get } from "../utils/get";
 import { oget } from "../utils/oget";
+import { Params } from "../utils/params";
 
 function simplifyVersion(version: string): string {
   if (version.length === 40) version = version.slice(0, 8);
@@ -24,10 +25,7 @@ export function Layout(props: { ctx: RouteComponentContext<"eng", false> }) {
   const { ctx } = props;
   const { engines, features, base, editions } = store;
 
-  const selectedEngines = ctx.params.derive((p) => {
-    const selected = p.eng?.split("|") ?? DEFAULT_SELECTED_ENG;
-    return selected;
-  });
+  const selectedEngines = Params.getEngines(ctx);
 
   const enginesByCategory = engines.derive(engines => {
     const grouped = Object.groupBy(
@@ -84,7 +82,7 @@ export function Layout(props: { ctx: RouteComponentContext<"eng", false> }) {
     }
 
     router.navigate(router.current().path, {
-      eng: currentlySelected.join("|"),
+      eng: Params.toParam(currentlySelected),
     }, { keepParams: true });
   };
 

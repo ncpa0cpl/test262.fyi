@@ -26,8 +26,8 @@ export const router = vrouter({
       component: (ctx) => <DetailsPage ctx={ctx} />,
     }),
     features: define({
-      paramNames: [],
-      component: ctx => <FeaturesPage />,
+      paramNames: ["feats"],
+      component: ctx => <FeaturesPage ctx={ctx} />,
     }),
     error: define({
       paramNames: [],

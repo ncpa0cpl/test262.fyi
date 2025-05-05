@@ -9,6 +9,7 @@ import { engSlice } from "../../utils/eng-slice";
 import { get } from "../../utils/get";
 import { graphBarWidth } from "../../utils/graph-bar-width";
 import { oget } from "../../utils/oget";
+import { Params } from "../../utils/params";
 
 type DetailsFile = {
   total: number;
@@ -28,10 +29,7 @@ export function DetailsPage(
 
   const { settings: { useAbs } } = store;
 
-  const selectedEngines = params.derive((p) => {
-    const selected = p.eng?.split("|") ?? DEFAULT_SELECTED_ENG;
-    return selected;
-  });
+  const selectedEngines = Params.getEngines(ctx);
 
   params.add(({ file }) => {
     if (!file) {
@@ -53,9 +51,7 @@ export function DetailsPage(
     (data, selectedEngines) => {
       if (!data) return [];
 
-      return engSlice(data.content.engines).filter(([name]) =>
-        selectedEngines.includes(name)
-      );
+      return engSlice(data.content.engines, selectedEngines);
     },
   );
 
@@ -113,9 +109,7 @@ export function DetailsPage(
                       <Stats
                         total={feature.total}
                         engines={selectedEngines.derive(selectedEngines =>
-                          engSlice(feature.engines).filter(([name]) =>
-                            selectedEngines.includes(name)
-                          )
+                          engSlice(feature.engines, selectedEngines)
                         )}
                       />
                     </td>
