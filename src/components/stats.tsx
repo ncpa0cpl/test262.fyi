@@ -79,9 +79,9 @@ export function Stats(props: StatProps) {
         const value = sig.derive(
           useAbs,
           engineCalcs,
-          (abs, { total, percent }) =>
+          (abs, { total, percent, passes }) =>
             abs
-              ? `${percent}/${total}`
+              ? `${passes}/${total}`
               : `${percent.toFixed(0)}%`,
         );
 
