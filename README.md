@@ -4,6 +4,8 @@ An alternative frontend for the test262.fyi
 
 ## Improvements over test262.fyi
 
+- search test results by specified features
+- more graph display options
 - fixed routing issues
 - persistent settings
 - persistent accordions
