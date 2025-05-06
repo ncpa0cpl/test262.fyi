@@ -66,7 +66,7 @@ export function DetailsPage(
   );
 
   return (
-    <div id="content">
+    <div id="details-page">
       <TableOptions />
       <table>
         {params.derive(p => (

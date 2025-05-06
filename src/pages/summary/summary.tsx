@@ -57,7 +57,7 @@ export function SummaryPage(
   );
 
   return (
-    <div id="content">
+    <div id="summaries-page">
       <TableOptions />
       <table>
         <thead></thead>
@@ -72,13 +72,12 @@ export function SummaryPage(
 
               return (
                 <tr>
-                  <th>
+                  <th class="link-cell">
                     <Link
+                      class="file-link"
                       to={router.nav.details}
                       params={{ file }}
-                      onmouseover={() => {
-                        prefetch(`https://test262.fyi/data/${file}.json`);
-                      }}
+                      prefetch={`https://test262.fyi/data/${file}.json`}
                       style={{
                         viewTransitionName: "vtrans_file_" + file,
                       }}

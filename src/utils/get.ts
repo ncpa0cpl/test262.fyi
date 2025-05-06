@@ -1,6 +1,8 @@
 const cache = new Map<string, any>();
 
 export function prefetch(url: string) {
+  if (cache.has(url)) return;
+
   return fetch(url)
     .then((resp) => {
       if (resp.status !== 200) throw new Error(resp.statusText);
