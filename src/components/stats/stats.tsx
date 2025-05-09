@@ -4,10 +4,11 @@ import {
   type ReadonlySignal,
   sig,
 } from "@ncpa0cpl/vanilla-jsx/signals";
-import { ENGINE_NAMES } from "../consts";
-import { store } from "../stores";
-import { graphBarWidth } from "../utils/graph-bar-width";
-import { oget } from "../utils/oget";
+import { ENGINE_NAMES } from "../../consts";
+import { store } from "../../stores";
+import { graphBarWidth } from "../../utils/graph-bar-width";
+import { oget } from "../../utils/oget";
+import { statsStyle } from "./stats-styles";
 
 type StatProps = {
   total: MaybeReadonlySignal<number>;
@@ -57,7 +58,7 @@ export function Stats(props: StatProps) {
       data={engines.derive(e => e.map(([name]) => name))}
       into={
         <div
-          class={{ stats: true, vertical: verticalGraphs }}
+          class={{ [statsStyle.cname]: true, vertical: verticalGraphs }}
           style={props.viewTransitionName
             && {
               viewTransitionName: "vtrans_stats_" + props.viewTransitionName,

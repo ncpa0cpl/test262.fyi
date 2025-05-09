@@ -1,6 +1,7 @@
 import { sig } from "@ncpa0cpl/vanilla-jsx/signals";
 import type { RouteComponentContext } from "@ncpa0cpl/vrouter";
-import { Stats } from "../../components/stats";
+import { css } from "embedcss";
+import { Stats } from "../../components/stats/stats";
 import { TableOptions } from "../../components/table-options";
 import { DEFAULT_SELECTED_ENG, ENGINE_NAMES } from "../../consts";
 import { router } from "../../router";
@@ -10,6 +11,36 @@ import { get } from "../../utils/get";
 import { graphBarWidth } from "../../utils/graph-bar-width";
 import { oget } from "../../utils/oget";
 import { Params } from "../../utils/params";
+
+const detailsStyle = css`
+    .details-page {
+        grid-column: content;
+        padding: 2vh 2vw;
+        height: fit-content;
+        width: 100%;
+
+        & h1 {
+            font-size: 2vw;
+            font-weight: 700;
+        }
+
+        & > .stats {
+            width: 100%;
+        }
+
+        & details {
+            margin-top: 16px;
+
+            & summary {
+                margin-bottom: 12px;
+            }
+        }
+
+        & table + details {
+            margin-top: 36px;
+        }
+    }
+`;
 
 type DetailsFile = {
   total: number;
@@ -66,7 +97,7 @@ export function DetailsPage(
   );
 
   return (
-    <div id="details-page">
+    <div class={detailsStyle}>
       <TableOptions />
       <table>
         {params.derive(p => (

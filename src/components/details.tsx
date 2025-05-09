@@ -144,6 +144,7 @@ export function Details(
     summary: MaybeReadonlySignal<JSX.Element>;
     children: MaybeReadonlySignal<JSX.Element | JSX.Element[]>;
     contentID?: MaybeReadonlySignal<string>;
+    contentClass?: MaybeReadonlySignal<string>;
   },
 ) {
   let open: boolean | Signal<boolean> = props.open;
@@ -165,7 +166,7 @@ export function Details(
       <summary>
         {props.summary}
       </summary>
-      <div id={props.contentID} class="content">
+      <div id={props.contentID} class={["content", props.contentClass]}>
         {props.children}
       </div>
     </details>

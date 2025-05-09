@@ -1,7 +1,8 @@
 import { Range } from "@ncpa0cpl/vanilla-jsx";
 import { sig } from "@ncpa0cpl/vanilla-jsx/signals";
 import type { RouteComponentContext } from "@ncpa0cpl/vrouter";
-import { Stats } from "../../components/stats";
+import { css } from "embedcss";
+import { Stats } from "../../components/stats/stats";
 import { TableOptions } from "../../components/table-options";
 import { DEFAULT_SELECTED_ENG } from "../../consts";
 import { router } from "../../router";
@@ -10,6 +11,56 @@ import { engSlice } from "../../utils/eng-slice";
 import { get } from "../../utils/get";
 import { Params } from "../../utils/params";
 import { FeaturesSelector } from "./components/features-selector";
+
+const featuresStyle = css`
+    .features-page {
+        padding: 2vh 2vw;
+
+        & .feature-filter {
+            & .feature-filter-input {
+                border-radius: 2px;
+                border-top-right-radius: 0px;
+                border-bottom-right-radius: 0px;
+                border-right: 0px;
+                outline: none;
+                margin-bottom: 0.5em;
+            }
+            & button.clear-query {
+                border-radius: 2px;
+                border-top-left-radius: 0px;
+                border-bottom-left-radius: 0px;
+                border-left: 0;
+                padding: 1px 0.2em;
+                border: 1px solid grey;
+            }
+            & button.reset {
+                margin-left: 1em;
+                border-radius: 2px;
+                padding: 1px 0.2em;
+                border: 1px solid grey;
+            }
+        }
+
+        & #feature-selector {
+            width: 100%;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            margin-bottom: 1em;
+
+            & .feat {
+                display: none;
+
+                &.visible {
+                    display: block;
+                }
+            }
+
+            & .feature-checkbox {
+                margin-right: 0.3em;
+            }
+        }
+    }
+`;
 
 export function FeaturesPage(
   props: { ctx: RouteComponentContext<"eng" | "feats", false> },
@@ -35,7 +86,7 @@ export function FeaturesPage(
   });
 
   return (
-    <div id="features-page">
+    <div class={featuresStyle}>
       <TableOptions />
       <FeaturesSelector
         selected={selectedFeatures}

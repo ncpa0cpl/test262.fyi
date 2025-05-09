@@ -1,8 +1,9 @@
 import { sig } from "@ncpa0cpl/vanilla-jsx/signals";
 import type { RouteComponentContext } from "@ncpa0cpl/vrouter";
+import { css } from "embedcss";
 import { Details } from "../../components/details";
 import { Link } from "../../components/link";
-import { Stats } from "../../components/stats";
+import { Stats } from "../../components/stats/stats";
 import { TableOption } from "../../components/table-option";
 import { TableOptions } from "../../components/table-options";
 import { DEFAULT_SELECTED_ENG, ENGINE_NAMES, ES_EDITIONS } from "../../consts";
@@ -15,6 +16,56 @@ import { localStorageSig } from "../../utils/local-storage-signal";
 import { oget } from "../../utils/oget";
 import { Params } from "../../utils/params";
 import type { Unpartial } from "../../utils/ts.utils";
+import { Editions } from "./components/editions/editions";
+import { Proposals } from "./components/proposals/proposals";
+
+const summaryStyle = css`
+    .summaries-page {
+        grid-column: content;
+        padding: 2vh 2vw;
+        height: fit-content;
+        width: 100%;
+
+        & h1 {
+            font-size: 2vw;
+            font-weight: 700;
+        }
+
+        & > .stats {
+            width: 100%;
+        }
+
+        & details {
+            margin-top: 16px;
+
+            & summary {
+                margin-bottom: 12px;
+            }
+        }
+
+        & table + details {
+            margin-top: 36px;
+        }
+
+        & .link-cell {
+            position: relative;
+
+            & .file-link {
+                display: flex;
+                align-items: center;
+                text-decoration: underline;
+                position: absolute;
+                top: 0;
+                bottom: 0;
+                transition: color 0.15s;
+
+                &:not(:hover) {
+                    color: #71a8ff;
+                }
+            }
+        }
+    }
+`;
 
 export function SummaryPage(
   props: { ctx: RouteComponentContext<"eng", false> },
@@ -27,37 +78,10 @@ export function SummaryPage(
     editions,
   } = store;
 
-  const additionsOnly = localStorageSig("esAdditionsOnly", true);
-
   const selectedEngines = Params.getEngines(ctx);
 
-  const editionsSum = editions.derive(
-    (editions) => {
-      const editionsAcc: Record<
-        string,
-        { total: number; engines: Record<string, number> }
-      > = {};
-      const acc = { total: 0, engines: {} as Record<string, number> };
-      for (
-        const [edition, { engines, total }] of Object
-          .entries(editions)
-      ) {
-        acc.total += total;
-        for (const [engine, passes] of Object.entries(engines)) {
-          acc.engines[engine] = (acc.engines[engine] ?? 0)
-            + passes;
-        }
-        editionsAcc[edition] = {
-          total: acc.total,
-          engines: { ...acc.engines },
-        };
-      }
-      return editionsAcc;
-    },
-  );
-
   return (
-    <div id="summaries-page">
+    <div class={summaryStyle}>
       <TableOptions />
       <table>
         <thead></thead>
@@ -98,104 +122,8 @@ export function SummaryPage(
           })}
         </tbody>
       </table>
-      <Details
-        open
-        persistenceID="proposal_details"
-        contentID="proposals"
-        summary={<h2>Proposals</h2>}
-      >
-        {features.derive((data) =>
-          Object
-            .entries(data)
-            .map(([, f]) => f)
-            .filter((f): f is Unpartial<FeatureData> => f.proposal !== null)
-            .sort((a, b) => b.proposal.stars - a.proposal.stars)
-            .map((feat) => {
-              const applicableEngines = selectedEngines.derive(selected =>
-                engSlice(feat.engines, selected)
-              );
-
-              return (
-                <div>
-                  <div>
-                    <a href={feat.proposal.link}>
-                      {feat.proposal.name.replaceAll("'", "")}
-                      <span class={`stage-${feat.proposal.stage}`}>
-                        Stage {feat.proposal.stage}
-                      </span>
-                    </a>
-                    <div>{feat.proposal.description}</div>
-                  </div>
-                  <Stats engines={applicableEngines} total={feat.total} />
-                </div>
-              );
-            })
-        )}
-      </Details>
-      <Details
-        open
-        persistenceID="editions_details"
-        summary={<h2>Editions</h2>}
-      >
-        <div>
-          <input
-            type="checkbox"
-            id="additions-only"
-            checked={additionsOnly}
-            onchange={ev =>
-              additionsOnly.dispatch(
-                (ev.target as HTMLInputElement).checked,
-              )}
-          />
-          <label htmlFor="additions-only">Additions only</label>
-        </div>
-        <div id="editions">
-          {editions.derive((data) => {
-            return Object
-              .entries(data)
-              .sort((a, b) =>
-                String(a[0]).localeCompare(String(b[0]), undefined, {
-                  numeric: true,
-                })
-              )
-              .map(([edition, { engines, total }]) => {
-                return (
-                  <div>
-                    <div>
-                      <span>
-                        {oget(
-                          ES_EDITIONS,
-                          String(edition),
-                          `Edition ${edition}`,
-                        )}
-                        <span>
-                          {Number(edition) > 6 ? `${edition}th edition` : ""}
-                        </span>
-                      </span>
-                    </div>
-                    <Stats
-                      engines={sig.derive(
-                        selectedEngines,
-                        additionsOnly,
-                        editionsSum,
-                        (selected, additionsOnly, editionsSum) =>
-                          additionsOnly
-                            ? engSlice(engines, selected)
-                            : engSlice(editionsSum[edition]!.engines, selected),
-                      )}
-                      total={sig.derive(
-                        additionsOnly,
-                        editionsSum,
-                        (additionsOnly, editionsSum) =>
-                          additionsOnly ? total : editionsSum[edition]!.total,
-                      )}
-                    />
-                  </div>
-                );
-              });
-          })}
-        </div>
-      </Details>
+      <Proposals selectedEngines={selectedEngines} />
+      <Editions selectedEngines={selectedEngines} />
     </div>
   );
 }
