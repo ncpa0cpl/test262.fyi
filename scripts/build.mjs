@@ -39,9 +39,7 @@ async function main() {
     entrypoint: p("src/index.tsx"),
     esbuildOptions: {
       jsxImportSource: "@ncpa0cpl/vanilla-jsx",
-      loader: {
-        ".css": "copy",
-      },
+      keepNames: true,
       minify: process.argv.includes("--dev") ? false : true,
       sourcemap: process.argv.includes("--dev") ? "inline" : false,
       define: { BASEPATH: JSON.stringify(BASEPATH) },
