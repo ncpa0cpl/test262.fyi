@@ -5,25 +5,29 @@ const SEPARATOR = "|";
 
 export class Params {
   static getEngines(ctx: RouteComponentContext<"eng", false>) {
-    const paramsCache = new Map<string, string[]>();
-    return ctx.params.derive((p) => {
-      if (p.eng != null) {
-        const cached = paramsCache.get(p.eng);
-        if (cached) return cached;
-
-        const selected = p.eng.split(SEPARATOR).filter(Boolean);
-        paramsCache.set(p.eng, selected);
+    return ctx.params.$prop("eng").derive((eng) => {
+      if (eng != null) {
+        const selected = eng.split(SEPARATOR).filter(Boolean);
         return selected;
       }
-
       return DEFAULT_SELECTED_ENG;
     });
   }
 
   static getFeatures(ctx: RouteComponentContext<"feats", false>) {
-    return ctx.params.derive((p) => {
-      const selected = p.feats?.split(SEPARATOR).filter(Boolean) ?? [];
+    return ctx.params.$prop("feats").derive((feats) => {
+      const selected = feats?.split(SEPARATOR).filter(Boolean) ?? [];
       return selected;
+    });
+  }
+
+  static getHistoryFilters(ctx: RouteComponentContext<"from" | "to", false>) {
+    return ctx.params.derive(({ from, to }) => {
+      return { from, to };
+    }, {
+      compare(a, b) {
+        return a.from === b.from && a.to === b.to;
+      },
     });
   }
 

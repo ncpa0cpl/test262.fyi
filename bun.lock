@@ -4,8 +4,8 @@
     "": {
       "name": "test262.fyi",
       "dependencies": {
-        "@ncpa0cpl/vanilla-jsx": "0.0.1-alpha.41",
-        "@ncpa0cpl/vrouter": "^0.0.13",
+        "@ncpa0cpl/vanilla-jsx": "0.0.1-alpha.42",
+        "@ncpa0cpl/vrouter": "^0.0.14",
         "embedcss": "^0.0.1",
         "ts-md5": "^1.3.1",
       },
@@ -19,7 +19,7 @@
     },
   },
   "overrides": {
-    "@ncpa0cpl/vanilla-jsx": "^0.0.1-alpha.41",
+    "@ncpa0cpl/vanilla-jsx": "^0.0.1-alpha.42",
   },
   "packages": {
     "@dprint/darwin-arm64": ["@dprint/darwin-arm64@0.49.1", "", { "os": "darwin", "cpu": "arm64" }, "sha512-ib6KcJWo/M5RJWXOQKhP664FG1hAvG7nrbkh+j8n+oXdzmbyDdXTP+zW+aM3/sIQUkGaZky1xy1j2VeScMEEHQ=="],
@@ -94,9 +94,9 @@
 
     "@ncpa0cpl/nodepack": ["@ncpa0cpl/nodepack@2.3.3", "", { "dependencies": { "@ncpa0cpl/node-worker-bridge": "^0.0.3", "@ts-morph/bootstrap": "^0.23.0", "chokidar": "^3.5.3", "dilswer": "2.1.1", "lodash.mergewith": "^4.6.2", "node-os-walk": ">=1.0.2", "pretty-error": "^4.0.0" }, "optionalDependencies": { "json-to-ts": "^1.7.0" }, "peerDependencies": { "esbuild": ">0.17.0" } }, "sha512-H3vhxRBS4en7Z2Z6esaVKssoC4kKYKIB+BXV3w+0vf941UZqTW5O64tubE40fGF+3LdQGY7Rw7GEU8r+TDAw/g=="],
 
-    "@ncpa0cpl/vanilla-jsx": ["@ncpa0cpl/vanilla-jsx@0.0.1-alpha.41", "", { "dependencies": { "html-element-attributes": "^3.4.0" } }, "sha512-+Vj2C7Kabio3seZYbf2QXZzuqERfnAlnR9Mek1iaHBRWEj+E2MtLdhbfBNgUAu5aGxZgsoFTwL28cCrBxHttXw=="],
+    "@ncpa0cpl/vanilla-jsx": ["@ncpa0cpl/vanilla-jsx@0.0.1-alpha.42", "", { "dependencies": { "html-element-attributes": "^3.4.0" } }, "sha512-KPQNHn/XvM4S0W8exg+SJ6c6QUt+qrh6hc5FbN0T9evlM8mmF7Y6jV0EeoIKYuRRgCad4ypdYJKDxEyGIaWqgw=="],
 
-    "@ncpa0cpl/vrouter": ["@ncpa0cpl/vrouter@0.0.13", "", { "dependencies": { "@ncpa0cpl/vanilla-jsx": ">=0.0.1-alpha.39" } }, "sha512-/PYnHlg+R/tDdR9Hbc/10/Mtufms5sQmkgjGc90BC0w/NZ0XbxpgzZAAjc2PFnAQT7bOWiy8jfY3F+OZoUmDtw=="],
+    "@ncpa0cpl/vrouter": ["@ncpa0cpl/vrouter@0.0.14", "", { "dependencies": { "@ncpa0cpl/vanilla-jsx": ">=0.0.1-alpha.42" } }, "sha512-WvHQyFiQUYqxBTxoOR8V2kwFZDt9ZMON8bF+2n9ZWvfPMVrqza4f419QYdTtGZEriLKciExCzvmcnpzzB/SFoQ=="],
 
     "@nodelib/fs.scandir": ["@nodelib/fs.scandir@2.1.5", "", { "dependencies": { "@nodelib/fs.stat": "2.0.5", "run-parallel": "^1.1.9" } }, "sha512-vq24Bq3ym5HEQm2NKCr3yXDwjc7vTsEThRDnkp2DK9p1uqLR+DHurm/NOTo0KG7HYHU7eppKZj3MyqYuMBf62g=="],
 

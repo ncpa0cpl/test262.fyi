@@ -33,7 +33,7 @@ export function HistoryStats(props: StatProps) {
     },
   } = store;
 
-  const baseCalcs = sig.derive(selectedEngines, (sel) => {
+  const baseCalcs = selectedEngines.derive((sel) => {
     const filteredEngines = engines.filter(({ engine }) =>
       sel.includes(engine)
     );

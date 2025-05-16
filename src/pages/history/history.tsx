@@ -24,8 +24,13 @@ type HistoryFile = Record<
 export function HistoryPage(
   props: { ctx: RouteComponentContext<"eng" | "from" | "to", false> },
 ) {
-  const selectedEngines = Params.getEngines(props.ctx);
+  const { ctx } = props;
+  const selectedEngines = Params.getEngines(ctx);
   const testHistory = sig<HistoryFile>({});
+
+  ctx.on.blur(() => {
+    router.replaceParams({ from: "", to: "" }, { keepParams: true });
+  });
 
   get("https://test262.fyi/data/history.json").then((resp) => {
     if (resp.error) {
@@ -35,23 +40,21 @@ export function HistoryPage(
     }
   });
 
-  const filterFrom = props.ctx.params.$prop("from");
-  const filterTo = props.ctx.params.$prop("to");
+  const filters = Params.getHistoryFilters(ctx);
 
   const timestamps = sig.derive(
     testHistory,
+    filters,
     selectedEngines,
-    filterFrom,
-    filterTo,
-    (h, selected, filterFrom, filterTo) => {
+    (h, filters, selected) => {
       const entries = Object.entries(h)
         .filter(([date]) => {
           let pass = true;
-          if (filterFrom) {
-            pass &&= date >= filterFrom;
+          if (filters.from) {
+            pass &&= date >= filters.from;
           }
-          if (filterTo) {
-            pass &&= date <= filterTo;
+          if (filters.to) {
+            pass &&= date <= filters.to;
           }
           return pass;
         })

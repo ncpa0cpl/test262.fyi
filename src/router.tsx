@@ -32,6 +32,7 @@ export const router = vrouter({
     }),
     history: define({
       paramNames: ["from", "to"],
+      memo: true,
       component: ctx => <HistoryPage ctx={ctx} />,
     }),
     error: define({
