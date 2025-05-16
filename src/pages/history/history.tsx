@@ -35,19 +35,23 @@ export function HistoryPage(
     }
   });
 
+  const filterFrom = props.ctx.params.$prop("from");
+  const filterTo = props.ctx.params.$prop("to");
+
   const timestamps = sig.derive(
     testHistory,
     selectedEngines,
-    props.ctx.params,
-    (h, selected, filters) => {
+    filterFrom,
+    filterTo,
+    (h, selected, filterFrom, filterTo) => {
       const entries = Object.entries(h)
         .filter(([date]) => {
           let pass = true;
-          if (filters.from) {
-            pass &&= date >= filters.from;
+          if (filterFrom) {
+            pass &&= date >= filterFrom;
           }
-          if (filters.to) {
-            pass &&= date <= filters.to;
+          if (filterTo) {
+            pass &&= date <= filterTo;
           }
           return pass;
         })

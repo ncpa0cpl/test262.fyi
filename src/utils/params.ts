@@ -5,10 +5,18 @@ const SEPARATOR = "|";
 
 export class Params {
   static getEngines(ctx: RouteComponentContext<"eng", false>) {
+    const paramsCache = new Map<string, string[]>();
     return ctx.params.derive((p) => {
-      const selected = p.eng?.split(SEPARATOR).filter(Boolean)
-        ?? DEFAULT_SELECTED_ENG;
-      return selected;
+      if (p.eng != null) {
+        const cached = paramsCache.get(p.eng);
+        if (cached) return cached;
+
+        const selected = p.eng.split(SEPARATOR).filter(Boolean);
+        paramsCache.set(p.eng, selected);
+        return selected;
+      }
+
+      return DEFAULT_SELECTED_ENG;
     });
   }
 
