@@ -119,7 +119,6 @@ export function HistoryPage(
 
   return (
     <div class={historyStyle}>
-      <TableOptions />
       <div class="date-range-filter">
         <span>From:</span>
         <input

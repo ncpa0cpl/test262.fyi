@@ -82,7 +82,6 @@ export function SummaryPage(
 
   return (
     <div class={summaryStyle}>
-      <TableOptions />
       <table>
         <thead></thead>
         <tbody>

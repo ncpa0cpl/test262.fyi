@@ -3,7 +3,6 @@ import { sig } from "@ncpa0cpl/vanilla-jsx/signals";
 import type { RouteComponentContext } from "@ncpa0cpl/vrouter";
 import { css } from "embedcss";
 import { Stats } from "../../components/stats/stats";
-import { TableOptions } from "../../components/table-options";
 import { DEFAULT_SELECTED_ENG } from "../../consts";
 import { router } from "../../router";
 import { store } from "../../stores";
@@ -87,7 +86,6 @@ export function FeaturesPage(
 
   return (
     <div class={featuresStyle}>
-      <TableOptions />
       <FeaturesSelector
         selected={selectedFeatures}
         onChange={setFeaturesParams}

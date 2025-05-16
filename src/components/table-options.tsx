@@ -1,7 +1,19 @@
+import { type ReadonlySignal, sig } from "@ncpa0cpl/vanilla-jsx/signals";
+import { css } from "embedcss";
 import { store } from "../stores";
 import { TableOption } from "./table-option";
 
-export function TableOptions() {
+const tableOptionsStyle = css`
+.table-options {
+    position: absolute;
+    top: var(--nav-height);
+    background: #393939;
+    right: .4em;
+    padding: .7em;
+}
+`;
+
+export function TableOptions(props: { visible: ReadonlySignal<boolean> }) {
   const {
     settings: {
       relativeGraphs,
@@ -13,7 +25,11 @@ export function TableOptions() {
   } = store;
 
   return (
-    <div id="table-options">
+    <div
+      id="table-options"
+      class={tableOptionsStyle}
+      style={{ display: sig.when(props.visible, "block", "none") }}
+    >
       <TableOption
         option={verticalGraphs}
         label="Vertical graphs"

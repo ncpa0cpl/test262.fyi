@@ -2,6 +2,7 @@ import { build } from "@ncpa0cpl/nodepack";
 import { EmbedCssPlugin } from "embedcss/plugins/esbuild";
 import fs from "fs/promises";
 import path from "path";
+import { SvgLoader } from "./svg-loader.mjs";
 
 const p = (...args) => path.resolve(import.meta.dirname, "..", ...args);
 
@@ -44,7 +45,10 @@ async function main() {
       minify: process.argv.includes("--dev") ? false : true,
       sourcemap: process.argv.includes("--dev") ? "inline" : false,
       define: { BASEPATH: JSON.stringify(BASEPATH) },
-      plugins: [EmbedCssPlugin()],
+      plugins: [
+        EmbedCssPlugin(),
+        SvgLoader({ baseUrlPath: BASEPATH, dir: "assets" }),
+      ],
     },
     watch: process.argv.includes("--watch"),
     onBuildComplete: () => void copyFiles(),

@@ -1,6 +1,11 @@
 import { css } from "embedcss";
 
 css`
+    :root {
+        --nav-height: 3em;
+    }
+
+
     * {
       box-sizing: border-box;
       margin: 0;

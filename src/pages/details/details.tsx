@@ -2,7 +2,6 @@ import { sig } from "@ncpa0cpl/vanilla-jsx/signals";
 import type { RouteComponentContext } from "@ncpa0cpl/vrouter";
 import { css } from "embedcss";
 import { Stats } from "../../components/stats/stats";
-import { TableOptions } from "../../components/table-options";
 import { DEFAULT_SELECTED_ENG, ENGINE_NAMES } from "../../consts";
 import { router } from "../../router";
 import { store } from "../../stores";
@@ -98,7 +97,6 @@ export function DetailsPage(
 
   return (
     <div class={detailsStyle}>
-      <TableOptions />
       <table>
         {params.derive(p => (
           <thead>
