@@ -36,6 +36,13 @@ export function Navbar() {
       <Link class="navbar-link" to={router.nav.features}>
         Features
       </Link>
+      <Link
+        class="navbar-link"
+        prefetch="https://test262.fyi/data/history.json"
+        to={router.nav.history}
+      >
+        History
+      </Link>
     </nav>
   );
 }

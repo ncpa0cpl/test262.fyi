@@ -15,6 +15,7 @@ import { engSlice } from "../utils/eng-slice";
 import { get } from "../utils/get";
 import { oget } from "../utils/oget";
 import { Params } from "../utils/params";
+import { simplifyVersion } from "../utils/verions";
 
 const sidebarStyle = css`
     .sidebar {
@@ -94,12 +95,6 @@ const sidebarStyle = css`
         }
     }
 `;
-
-function simplifyVersion(version: string): string {
-  if (version.length === 40) version = version.slice(0, 8);
-  if (version.length === 46) version = version.slice(0, 14);
-  return version;
-}
 
 export function Layout(props: { ctx: RouteComponentContext<"eng", false> }) {
   const { ctx } = props;
@@ -216,7 +211,7 @@ const enginesStyle = css`
 
 function Engines(props: { selectedEngines: ReadonlySignal<string[]> }) {
   const { selectedEngines } = props;
-  const { engines, features, base, editions } = store;
+  const { engines } = store;
 
   const enginesByCategory = engines.derive(engines => {
     const grouped = Object.groupBy(

@@ -2,6 +2,7 @@ import { vrouter } from "@ncpa0cpl/vrouter";
 import { DetailsPage } from "./pages/details/details";
 import { ErrorPage } from "./pages/error/error";
 import { FeaturesPage } from "./pages/features/features";
+import { HistoryPage } from "./pages/history/history";
 import { Layout } from "./pages/layout";
 import { SummaryPage } from "./pages/summary/summary";
 
@@ -28,6 +29,10 @@ export const router = vrouter({
     features: define({
       paramNames: ["feats"],
       component: ctx => <FeaturesPage ctx={ctx} />,
+    }),
+    history: define({
+      paramNames: ["from", "to"],
+      component: ctx => <HistoryPage ctx={ctx} />,
     }),
     error: define({
       paramNames: [],

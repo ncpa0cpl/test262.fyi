@@ -10,11 +10,13 @@ export function engSlice<T>(
     result = result.filter(elem => filter.includes(elem[0]));
   }
 
-  result.sort((a, b) => {
-    const aidx = ENG_ORDER.findIndex((e) => e === a[0]);
-    const bidx = ENG_ORDER.findIndex((e) => e === b[0]);
-    return aidx - bidx;
-  });
+  result.sort((a, b) => compareEngines(a[0], b[0]));
 
   return result;
+}
+
+export function compareEngines(a: string, b: string) {
+  const aidx = ENG_ORDER.findIndex((e) => e === a);
+  const bidx = ENG_ORDER.findIndex((e) => e === b);
+  return aidx - bidx;
 }

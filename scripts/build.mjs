@@ -11,6 +11,7 @@ const SPA_ROUTES = [
   "summaries",
   "features",
   "details",
+  "history",
   "error",
 ];
 

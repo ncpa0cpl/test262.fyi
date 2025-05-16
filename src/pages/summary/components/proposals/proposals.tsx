@@ -17,7 +17,7 @@ export function Proposals(
       open
       persistenceID="proposal_details"
       contentID="proposals"
-      contentClass={proposalsStyle}
+      contentClass={proposalsStyle.cname}
       summary={<h2>Proposals</h2>}
     >
       {features.derive((data) =>
