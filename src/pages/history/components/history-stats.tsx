@@ -96,7 +96,7 @@ export function HistoryStats(props: StatProps) {
           <div
             dir={sig.when(verticalGraphs, "ltr", "rtl")}
             class={`stat-${eng}`}
-            title={value.derive(t => `${name} (ver. ${engine.version}) ${t}`)}
+            title={sig.literal`${name} (ver. ${engine.version}) ${value}`}
             style={{
               display: sig.derive(
                 engineCalcs,

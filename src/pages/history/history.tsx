@@ -44,9 +44,9 @@ export function HistoryPage(
 
   const timestamps = sig.derive(
     testHistory,
-    filters,
     selectedEngines,
-    (h, filters, selected) => {
+    filters,
+    (h, selected, filters) => {
       const entries = Object.entries(h)
         .filter(([date]) => {
           let pass = true;

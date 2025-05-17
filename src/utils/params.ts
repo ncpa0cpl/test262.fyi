@@ -22,13 +22,7 @@ export class Params {
   }
 
   static getHistoryFilters(ctx: RouteComponentContext<"from" | "to", false>) {
-    return ctx.params.derive(({ from, to }) => {
-      return { from, to };
-    }, {
-      compare(a, b) {
-        return a.from === b.from && a.to === b.to;
-      },
-    });
+    return ctx.params.$pick("from", "to");
   }
 
   static toParam(values: string[]) {

@@ -55,7 +55,7 @@ export function Stats(props: StatProps) {
 
   return (
     <Range
-      data={engines.derive(e => e.map(([name]) => name))}
+      data={engines.$map(([name]) => name)}
       into={
         <div
           class={{ [statsStyle.cname]: true, vertical: verticalGraphs }}
