@@ -102,7 +102,7 @@ export function Layout(props: { ctx: RouteComponentContext<"eng", false> }) {
 
   const selectedEngines = Params.getEngines(ctx);
 
-  get("https://test262.fyi/data/engines.json").then((resp) => {
+  get("https://data.test262.fyi/engines.json").then((resp) => {
     if (resp.error) {
       router.nav.error.$open();
     } else {
@@ -110,7 +110,7 @@ export function Layout(props: { ctx: RouteComponentContext<"eng", false> }) {
     }
   });
 
-  get("https://test262.fyi/data/features.json").then((resp) => {
+  get("https://data.test262.fyi/features.json").then((resp) => {
     if (resp.error) {
       router.nav.error.$open();
     } else {
@@ -118,7 +118,7 @@ export function Layout(props: { ctx: RouteComponentContext<"eng", false> }) {
     }
   });
 
-  get("https://test262.fyi/data/index.json").then((resp) => {
+  get("https://data.test262.fyi/index.json").then((resp) => {
     if (resp.error) {
       router.nav.error.$open();
     } else {
@@ -126,7 +126,7 @@ export function Layout(props: { ctx: RouteComponentContext<"eng", false> }) {
     }
   });
 
-  get("https://test262.fyi/data/editions.json").then((resp) => {
+  get("https://data.test262.fyi/editions.json").then((resp) => {
     if (resp.error) {
       router.nav.error.$open();
     } else {

@@ -32,7 +32,7 @@ export function HistoryPage(
     router.replaceParams({ from: "", to: "" }, { keepParams: true });
   });
 
-  get("https://test262.fyi/data/history.json").then((resp) => {
+  get("https://data.test262.fyi/history.json").then((resp) => {
     if (resp.error) {
       router.nav.error.$open();
     } else {

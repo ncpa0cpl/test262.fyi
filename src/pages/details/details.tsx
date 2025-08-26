@@ -66,7 +66,7 @@ export function DetailsPage(
       router.nav.summaries.$open();
       return;
     }
-    get(`https://test262.fyi/data/${file}.json`).then((resp) => {
+    get(`https://data.test262.fyi/${file}.json`).then((resp) => {
       if (resp.error) {
         router.nav.error.$open();
       } else {
