@@ -603,7 +603,7 @@ walkStruct(struct);
   let history;
 
   try {
-    history = await (await fetch("https://test262.fyi/data/history.json"))
+    history = await (await fetch("https://data.test262.fyi/history.json"))
       .json();
   } catch {
     // failed, probably does not exist or ?????

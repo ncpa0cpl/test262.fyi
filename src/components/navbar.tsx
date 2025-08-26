@@ -75,7 +75,7 @@ export function Navbar() {
       </Link>
       <Link
         class="navbar-link"
-        prefetch="https://test262.fyi/data/history.json"
+        prefetch="https://data.test262.fyi/history.json"
         to={router.nav.history}
       >
         History

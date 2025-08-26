@@ -100,7 +100,7 @@ export function SummaryPage(
                       class="file-link"
                       to={router.nav.details}
                       params={{ file }}
-                      prefetch={`https://test262.fyi/data/${file}.json`}
+                      prefetch={`https://data.test262.fyi/${file}.json`}
                       style={{
                         viewTransitionName: "vtrans_file_" + file,
                       }}
